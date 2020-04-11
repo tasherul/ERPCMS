@@ -10,16 +10,32 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using ECMS;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace ERPCMS
 {
     public partial class Default : System.Web.UI.Page
     {
-        IPFinder ip = new IPFinder();   
+        IPFinder ip = new IPFinder();
+        Connection con = new Connection();
+        SqlConnection c;
+        Registation reg = new Registation();
+        Check chk = new Check();
         protected void Page_Load(object sender, EventArgs e)
         {
-            ip.IPDetails();
-            Response.Write(ip.Country+" "+ip.IP+" "+ip.ISP);
+            //ip.IPDetails();
+
+            //con.DatabaseName = "sad";
+            //Response.Write(chk.int32Check("select count(*) from DeveloperRegistation"));
+            StringGenarator ran = new StringGenarator();
+            ran.TotalString = 10;
+            ran.DatabaseEntry = false;
+            ran.Hexadecimal = true;
+
+            Response.Write(ran.RandomStringNumber("test",2,'-'));
+            
+            
         } 
         public string IPRequestHelper(string url)
         {

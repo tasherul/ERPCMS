@@ -7,7 +7,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-	<title>NobleUI Responsive Bootstrap 4 Dashboard Template</title>
+	<title>Create Account</title>
 	<!-- core:css -->
 	<link rel="stylesheet" href="../../../assets/vendors/core/core.css"/>
 	<!-- endinject -->
@@ -16,6 +16,7 @@
 	<!-- inject:css -->
 	<link rel="stylesheet" href="../../../assets/fonts/feather-font/css/iconfont.css"/>
      <link rel="stylesheet" href="../../../assets/vendors/flag-icon-css/css/flag-icon.min.css"/>
+      <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css"/>
 	<!-- endinject -->
   <!-- Layout styles -->  
 	<link rel="stylesheet" href="../../../assets/css/demo_1/style.css"/>
@@ -23,6 +24,12 @@
   <link rel="shortcut icon" href="../../../assets/images/favicon.png" />
 </head>
 <body>
+    <form id="form" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+
+
 	<div class="main-wrapper">
 		<div class="page-wrapper full-page">
 			<div class="page-content d-flex align-items-center justify-content-center">
@@ -41,35 +48,51 @@
                           <div class="col-md-6">
                               <div class="form-group">
                                   <label for="exampleInputUsername1">FirstName</label>
-                                  <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username">
+                                  <asp:TextBox ID="txtFirstName" CssClass="form-control" placeholder="first name" runat="server"></asp:TextBox>
+                                  
                               </div>
                           </div>
                           <div class="col-md-6">
                               <div class="form-group">
                                   <label for="exampleInputUsername1">Surname</label>
-                                  <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username">
+                                  <asp:TextBox ID="txtSureName" CssClass="form-control" placeholder="sure name" runat="server"></asp:TextBox>
                               </div>
                           </div>
                       </div>
                       
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        <label for="exampleInputEmail1">Email address </label>
+                        <asp:TextBox ID="txtEmail" CssClass="form-control" TextMode="Email" placeholder="email" runat="server"></asp:TextBox>
                       </div>
 
                       <div class="row">
-                          
+                          <style>
+                              .Sucess{
+                                 color:forestgreen;
+                              }
+                              .Danger
+                              {
+                                  color:red;
+                              }
+                              .warning{
+                                  color:yellow;
+                              }
+                              .info{
+                                  color:dodgerblue;
+                              }
+                          </style>
                               <div class="col-md-6">
                                   <div class="form-group">
-                                      <label for="exampleInputUsername1">UserName</label>
-                                      <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username">
+                                      <label for="exampleInputUsername1">UserName  <i tabindex="0" class="info" style="width:15px; height:15px; cursor:pointer;" data-feather="info" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"></i>
+                                          <asp:Label ID="lblUserNameAvaility" runat="server"></asp:Label>   </label>
+                                      <asp:TextBox ID="txtUserName" AutoPostBack="true" OnTextChanged="txtUserName_TextChanged" CssClass="form-control" placeholder="username" runat="server"></asp:TextBox>
                                   </div>
                               </div>
                           
                           <div class="col-md-6">
                               <div class="form-group">
-                                  <label for="exampleInputUsername1">Password</label>
-                                  <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username">
+                                  <label for="exampleInputUsername1">Password  <asp:Label ID="lblPassword" runat="server" ></asp:Label></label>
+                                  <asp:TextBox ID="txtPassword" AutoPostBack="true" OnTextChanged="txtPassword_TextChanged" CssClass="form-control" placeholder="password" TextMode="Password" runat="server"></asp:TextBox>
                               </div>
                           </div>
                       </div>
@@ -79,17 +102,14 @@
                               <div class="form-group">
                                   <label for="exampleInputUsername1">Country &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Mobile </label>    
                                   <div class="row">                                                                 
-                                  <i class="form-control col-md-2 flag-icon flag-icon-bd" style="border:0px; cursor:pointer;" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"></i>
-                                  <input type="text" class="form-control col-md-3" value="+880 -" style="border:0px; font-weight:bold;">
-                                      <input type="text" class="form-control col-md-7" value="Mobile Number" style="">
+                                  <i class="form-control col-md-2 flag-icon flag-icon-bd" style="border:0px; cursor:pointer;" data-toggle="popover" title="Country" data-content="Please type your country mobile number currectly and send otp?"></i>
+                                  <asp:TextBox ID="txtMobileCode" Enabled="false" CssClass="form-control col-md-3" BorderStyle="None" Font-Bold="true" runat="server"></asp:TextBox>
+                                      <asp:TextBox ID="txtMobileNumber" CssClass="form-control col-md-7" placeholder="mobile number" runat="server"></asp:TextBox>
                                   </div>   
                               </div>
                           
                       <br />
-                    <%--     <div class="alert alert-icon-primary" role="alert">
-	<i data-feather="alert-circle"></i>
-	A simple primary alert—check it out!
-</div>--%>
+                         <div class='alert alert-icon-danger' role='alert'><i data-feather='alert-circle'></i>A simple primary alert—check it out!</div>
                       <div class="mt-3">
                         <button type="submit" class="btn btn-primary mr-2 mb-2 mb-md-0">Sing up</button>
 
@@ -110,6 +130,9 @@
 			</div>
 		</div>
 	</div>
+                            </ContentTemplate>
+        </asp:UpdatePanel>
+        </form>
     </body>
 	<!-- core:js -->
 	<script src="../../../assets/vendors/core/core.js"></script>
